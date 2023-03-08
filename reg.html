@@ -1,0 +1,57 @@
+<html>
+    <body>
+        <input type="text" id="uid">
+        <input type="text" id="name">
+        <input type="submit" id="btn">
+        
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyD31UFI_FounQu9ZtGR2pq5kqkdfpV1DU0",
+                authDomain: "website-test-54237.firebaseapp.com",
+                projectId: "website-test-54237",
+                storageBucket: "website-test-54237.appspot.com",
+                messagingSenderId: "537153925799",
+                appId: "1:537153925799:web:854b9449ee382a08686182",
+                measurementId: "G-3PLS71GFEK"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+
+            import {getDatabase, ref, set, child, update, remove}
+            from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+
+            const db = getDatabase();
+
+            var id = document.getElementById("uid");
+            var name = document.getElementById("name");
+            var btn = document.getElementById("btn");
+
+            function insertData() {
+                set(ref(db, "TheUser/"+id.value),{
+                    NameOfUser: name.value
+                })
+                .then(()=>{
+                    alert("data added!")
+                })
+                .catch((error)=>{
+                    alert("error!!, "+error);
+                });
+            }
+
+            btn.addEventListener('click', insertData)
+
+        </script>
+
+    </body>
+</html>
