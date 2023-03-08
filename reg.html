@@ -6,6 +6,7 @@
         
 
         <script type="module">
+            
             // Import the functions you need from the SDKs you need
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
@@ -33,15 +34,17 @@
 
             const db = getDatabase();
 
+            //  References to HTML elements 
             var id = document.getElementById("uid");
             var name = document.getElementById("name");
             var btn = document.getElementById("btn");
 
+            //  function to insert data
             function insertData() {
-                set(ref(db, "TheUser/"+id.value),{
-                    NameOfUser: name.value
+                set(ref(db, "TheUser/"+id.value),{      //  `TheUser` is name of folder or directory, it'll store data `id` vise
+                    NameOfUser: name.value              //  `NameOfUser` is the child that stores Name, inshort inserted data
                 })
-                .then(()=>{
+                .then(()=>{                             //  It's call arrow function 
                     alert("data added!")
                 })
                 .catch((error)=>{
@@ -49,7 +52,7 @@
                 });
             }
 
-            btn.addEventListener('click', insertData)
+            btn.addEventListener('click', insertData)   //  Button Click event to insert data
 
         </script>
 
